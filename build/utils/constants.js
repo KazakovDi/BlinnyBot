@@ -1,4 +1,7 @@
-export const Fishes = [
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Junks = exports.Fishes = void 0;
+exports.Fishes = [
     "shrimp",
     "shark",
     "whale",
@@ -10,7 +13,7 @@ export const Fishes = [
     "octopus",
     "barracuda",
 ];
-export const Junks = [
+exports.Junks = [
     "a boot",
     "a boot",
     "a golden bar",

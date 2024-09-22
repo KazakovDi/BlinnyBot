@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
-    "module": "ESNext",          // Использование синтаксиса ES-модулей (import/export)
+    "module": "commonjs",          // Использование синтаксиса ES-модулей (import/export)
     "target": "ESNext",          // Компиляция в современный JavaScript (или выберите нужный уровень ES)
     "moduleResolution": "node",  // Для разрешения модулей в стиле Node.js
     "esModuleInterop": true,     // Включает совместимость с CommonJS

@@ -1,9 +1,12 @@
-import { Client, GatewayIntentBits } from "discord.js";
-import mongoose from "mongoose";
-import { calculateFish } from "./utils/calculateFish.js";
-import { Fishes, Junks } from "./utils/constants.js";
-import { User } from "./MongooseSchemas/UserSchema.js";
-import { clearEndZeros } from "./utils/clearEndZeros.js";
+"use strict";
+const { Client, GatewayIntentBits } = require("discord.js");
+const mongoose = require("mongoose");
+const { calculateFish } = require("./utils/calculateFish.js");
+const { Fishes, Junks } = require("./utils/constants.js");
+const User = require("./MongooseSchemas/UserSchema.js");
+const { clearEndZeros } = require("./utils/clearEndZeros.js");
+const dotenv = require("dotenv");
+dotenv.config({ path: "./.env" });
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
@@ -80,4 +83,4 @@ client.on("messageCreate", async (message) => {
         message.channel.send(`Blin for real`);
     }
 });
-client.login("MTI4NTcwNzE3NDk3MDEzMDUyMg.G8L30-.qhAl7BcJvlpEXnO97W97X-gAXZFqyGuyFbjqFU");
+client.login(process.env.DISCORD_TOKEN);

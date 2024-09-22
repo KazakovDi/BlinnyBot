@@ -1,4 +1,7 @@
-export const calculateFish = async () => {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.calculateFish = void 0;
+const calculateFish = async () => {
     let number = Math.floor(Math.random() * 100);
     const promise = new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -26,3 +29,4 @@ export const calculateFish = async () => {
     });
     return promise;
 };
+exports.calculateFish = calculateFish;
