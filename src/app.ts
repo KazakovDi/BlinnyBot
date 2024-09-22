@@ -5,6 +5,7 @@ const { Fishes, Junks } = require("./utils/constants.js");
 const User = require("./MongooseSchemas/UserSchema.js");
 const { clearEndZeros } = require("./utils/clearEndZeros.js");
 const dotenv = require("dotenv");
+
 dotenv.config({ path: "./.env" });
 
 const client = new Client({
