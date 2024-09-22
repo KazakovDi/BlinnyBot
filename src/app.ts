@@ -1,3 +1,5 @@
+import { Blins, PatLines } from "./utils/constants";
+
 const { Client, GatewayIntentBits } = require("discord.js");
 const mongoose = require("mongoose");
 const { calculateFish } = require("./utils/calculateFish.js");
@@ -90,7 +92,7 @@ client.on("messageCreate", async (message: any) => {
     );
   }
 
-  if (message.content === "!d20" && !message.author.bot) {
+  if (message.content.startsWith("!d20") && !message.author.bot) {
     let D20 = Math.floor(Math.random() * 19) + 1;
 
     setTimeout(() => {
@@ -101,8 +103,25 @@ client.on("messageCreate", async (message: any) => {
     }, 15);
   }
 
-  if (message.content === "!blin" && !message.author.bot) {
-    message.channel.send(`Blin for real`);
+  const BlinRegex = /blin/gi;
+  if (BlinRegex.test(message.content) && !message.author.bot) {
+    const blinIndex = Math.floor(Math.random() * Blins.length);
+    message.channel.send(Blins[blinIndex]);
+  }
+
+  const SwearingRegex = /bl[yei]at/gi;
+  if (SwearingRegex.test(message.content) && !message.author.bot) {
+    message.channel.send("No swearing!");
+  }
+
+  if (message.content.startsWith("!spook")) {
+    message.channel.send(`<@${message.author.id}> Dude, I'm not Giga`);
+  }
+
+  if (message.content === "!pat") {
+    const index = Math.floor(Math.random() * PatLines.length);
+
+    message.channel.send(`<@${message.author.id}> ${PatLines[index]}`);
   }
 });
 

@@ -45,3 +45,21 @@ export const Junks = [
   "a boot",
   "Mercedes SL",
 ];
+
+export const Blins = [
+  "Blin for real",
+  "Blin indeed",
+  "Blin, man...",
+  "Blin, AHAHHAHAH",
+  "Feeling blinny, ha ?",
+  "You're my lovely blinchick <3",
+  "Flip a blin, man",
+  "Blin in your FACE!",
+];
+
+export const PatLines = [
+  "Wash your head first",
+  "I love your soft hair ^^",
+  "No patting before payment",
+  "Nice to pat you",
+];

@@ -1,4 +1,6 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const constants_1 = require("./utils/constants");
 const { Client, GatewayIntentBits } = require("discord.js");
 const mongoose = require("mongoose");
 const { calculateFish } = require("./utils/calculateFish.js");
@@ -16,7 +18,7 @@ const client = new Client({
         GatewayIntentBits.MessageContent,
     ],
 });
-app.get("/", (req, res) => {
+app.get("/interactions", (req, res) => {
     res.send("Hello, this is an Express server running alongside a Discord bot!");
 });
 app.listen(process.env.PORT || 3000, () => {
@@ -75,7 +77,7 @@ client.on("messageCreate", async (message) => {
             return;
         message.channel.send(`<@${message.author.id}> You've caught ${clearEndZeros((user.fishes / 1000).toFixed(3))}kg of fish so far`);
     }
-    if (message.content === "!d20" && !message.author.bot) {
+    if (message.content.startsWith("!d20") && !message.author.bot) {
         let D20 = Math.floor(Math.random() * 19) + 1;
         setTimeout(() => {
             const specialNumber = Math.floor(Math.random() * 200);
@@ -87,8 +89,21 @@ client.on("messageCreate", async (message) => {
                 message.channel.send(`Your number is: ${D20}`);
         }, 15);
     }
-    if (message.content === "!blin" && !message.author.bot) {
-        message.channel.send(`Blin for real`);
+    const BlinRegex = /blin/gi;
+    if (BlinRegex.test(message.content) && !message.author.bot) {
+        const blinIndex = Math.floor(Math.random() * constants_1.Blins.length);
+        message.channel.send(constants_1.Blins[blinIndex]);
+    }
+    const SwearingRegex = /bl[yei]at/gi;
+    if (SwearingRegex.test(message.content) && !message.author.bot) {
+        message.channel.send("No swearing!");
+    }
+    if (message.content.startsWith("!spook")) {
+        message.channel.send(`<@${message.author.id}> Dude, I'm not Giga`);
+    }
+    if (message.content === "!pat") {
+        const index = Math.floor(Math.random() * constants_1.PatLines.length);
+        message.channel.send(`<@${message.author.id}> ${constants_1.PatLines[index]}`);
     }
 });
 client.login(process.env.DISCORD_TOKEN);

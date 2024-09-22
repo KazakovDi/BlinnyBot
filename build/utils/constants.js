@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Junks = exports.Fishes = void 0;
+exports.PatLines = exports.Blins = exports.Junks = exports.Fishes = void 0;
 exports.Fishes = [
     "shrimp",
     "shark",
@@ -46,4 +46,20 @@ exports.Junks = [
     "a boot",
     "a boot",
     "Mercedes SL",
+];
+exports.Blins = [
+    "Blin for real",
+    "Blin indeed",
+    "Blin, man...",
+    "Blin, AHAHHAHAH",
+    "Feeling blinny, ha ?",
+    "You're my lovely blinchick <3",
+    "Flip a blin, man",
+    "Blin in your FACE!",
+];
+exports.PatLines = [
+    "Wash your head first",
+    "I love your soft hair ^^",
+    "No patting before payment",
+    "Nice to pat you",
 ];
