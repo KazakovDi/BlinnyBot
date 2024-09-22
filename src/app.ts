@@ -5,8 +5,11 @@ const { Fishes, Junks } = require("./utils/constants.js");
 const User = require("./MongooseSchemas/UserSchema.js");
 const { clearEndZeros } = require("./utils/clearEndZeros.js");
 const dotenv = require("dotenv");
+const express = require("express");
 
 dotenv.config({ path: "./.env" });
+
+const app = express();
 
 const client = new Client({
   intents: [
@@ -14,6 +17,14 @@ const client = new Client({
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
   ],
+});
+
+app.get("/", (req, res) => {
+  res.send("Hello, this is an Express server running alongside a Discord bot!");
+});
+
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Express server is running`);
 });
 
 client.once("ready", async () => {
