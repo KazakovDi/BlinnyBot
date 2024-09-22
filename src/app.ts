@@ -19,7 +19,7 @@ const client = new Client({
   ],
 });
 
-app.get("/", (req, res) => {
+app.get("/interactions", (req, res) => {
   res.send("Hello, this is an Express server running alongside a Discord bot!");
 });
 
