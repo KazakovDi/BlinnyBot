@@ -17,6 +17,30 @@ const userSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
+    health: {
+      default: 100,
+      type: Number,
+    },
+    lastTimeEat: {
+      type: Number,
+      default: null,
+    },
+    ateCounter: {
+      type: Number,
+      default: 0,
+    },
+    eatenCounter: {
+      type: Number,
+      default: 0,
+    },
+    isEaten: {
+      type: Boolean,
+      default: false,
+    },
+    eatenTime: {
+      type: Number,
+      default: null,
+    },
   },
   {
     timestamps: true,

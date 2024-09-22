@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PatLines = exports.Blins = exports.Junks = exports.Fishes = void 0;
+exports.eatWarningPhrases = exports.damagePhrases = exports.Phrases = exports.PatLines = exports.Blins = exports.Junks = exports.Fishes = void 0;
 exports.Fishes = [
     "shrimp",
     "shark",
@@ -62,4 +62,31 @@ exports.PatLines = [
     "I love your soft hair ^^",
     "No patting before payment",
     "Nice to pat you",
+];
+exports.Phrases = [
+    "Congrats!",
+    "Why is it always the best ones?(",
+    "Sadge",
+    "Too bad, I liked them",
+    "Hope they were tasty",
+    "Not like I'm against it",
+    "Skill issue if you ask me",
+    "Blin...",
+    "That's illegal",
+];
+exports.damagePhrases = [
+    "Meh, could be more",
+    "Impressive!",
+    "Bite harder dammit!",
+    "Are you kidding with me ?",
+    "Nice one",
+    "I wonder who will be the winner",
+    "I bet this guy wins",
+];
+exports.eatWarningPhrases = [
+    "You can't eat me, stop it",
+    "You better stop trying it",
+    "I'm to blinny to be eaten",
+    "Don't mistake my kindness for weakness",
+    "I warn you",
 ];

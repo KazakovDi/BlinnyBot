@@ -63,3 +63,33 @@ export const PatLines = [
   "No patting before payment",
   "Nice to pat you",
 ];
+
+export const Phrases = [
+  "Congrats!",
+  "Why is it always the best ones?(",
+  "Sadge",
+  "Too bad, I liked them",
+  "Hope they were tasty",
+  "Not like I'm against it",
+  "Skill issue if you ask me",
+  "Blin...",
+  "That's illegal",
+];
+
+export const damagePhrases = [
+  "Meh, could be more",
+  "Impressive!",
+  "Bite harder dammit!",
+  "Are you kidding with me ?",
+  "Nice one",
+  "I wonder who will be the winner",
+  "I bet this guy wins",
+];
+
+export const eatWarningPhrases = [
+  "You can't eat me, stop it",
+  "You better stop trying it",
+  "I'm to blinny to be eaten",
+  "Don't mistake my kindness for weakness",
+  "I warn you",
+];

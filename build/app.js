@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const constants_1 = require("./utils/constants");
+const generateDanage_1 = require("./utils/generateDanage");
 const { Client, GatewayIntentBits } = require("discord.js");
 const mongoose = require("mongoose");
 const { calculateFish } = require("./utils/calculateFish.js");
@@ -104,6 +105,92 @@ client.on("messageCreate", async (message) => {
     if (message.content === "!pat") {
         const index = Math.floor(Math.random() * constants_1.PatLines.length);
         message.channel.send(`<@${message.author.id}> ${constants_1.PatLines[index]}`);
+    }
+    if (message.content.startsWith("!eat")) {
+        const author = message.author;
+        const targetKey = message.mentions.users.keys().next().value;
+        const targetedUser = message.mentions.users.get(targetKey);
+        const Attacker = await User.findOne({ userDiscordId: author.id });
+        if (targetedUser.id === "1285707174970130522") {
+            const index = Math.floor(Math.random() * constants_1.eatWarningPhrases.length);
+            const promise = new Promise((resolve) => {
+                setTimeout(() => {
+                    const possibility = Math.floor(Math.random() * 10);
+                    if (possibility === 0) {
+                        Attacker.health = 0;
+                        Attacker.isEaten = true;
+                        Attacker.eatenCounter++;
+                        Attacker.save();
+                        message.channel.send(`You are not eating Blinny, Blinny eats you. <@${author.id}> was eaten`);
+                        resolve();
+                    }
+                    else {
+                        message.channel.send(`<@${author.id}> ${constants_1.eatWarningPhrases[index]}`);
+                        resolve();
+                    }
+                }, 10);
+            });
+            await promise;
+            return;
+        }
+        if (Attacker.isEaten)
+            if (Date.now() - Attacker.eatenTime < 900000 &&
+                Attacker.eatenTime !== null) {
+                Attacker.health = 100;
+                Attacker.isEaten = false;
+            }
+            else {
+                message.channel.send(`<@${author.id}> Sorry dude, you're eaten yourself already`);
+            }
+        const gap = Date.now() - Attacker.lastTimeEat;
+        if (gap <= 7000 && Attacker.lastTimeEat !== null) {
+            message.channel.send(`<@${message.author.id}> Wait ${gap / 1000}s before another bite`);
+        }
+        else {
+            let Victim = await User.findOne({ userDiscordId: targetedUser.id });
+            if (Victim === null) {
+                Victim = new User({
+                    username: targetedUser.username,
+                    userDiscordId: targetedUser.id,
+                    globalName: targetedUser.globalName,
+                    fishes: 0,
+                });
+                await Victim.save();
+            }
+            if (Victim.isEaten) {
+                if (Date.now() - Victim.eatenTime < 900000 &&
+                    Victim.eatenTime !== null) {
+                    Victim.health = 100;
+                    Victim.isEaten = false;
+                }
+                else {
+                    message.channel.send(`<@${author.id}> The dude is already eaten, live them`);
+                }
+            }
+            else {
+                const damage = await (0, generateDanage_1.generateDamage)();
+                Victim.health -= damage;
+                if (Victim.health <= 0) {
+                    Victim.isEaten = true;
+                    Victim.eatenCounter++;
+                    Attacker.lastTimeEat = Date.now();
+                    Attacker.ateCounter++;
+                    Attacker.health;
+                    const phraseIndex = Math.floor(Math.random() * constants_1.Phrases.length);
+                    Victim.save();
+                    Attacker.save();
+                    message.channel.send(`<@${author.id}> ate <@${targetedUser.id}> ${constants_1.Phrases[phraseIndex]}. <@${author.id}> ate ${Attacker.ateCounter} person(s) and <@${targetedUser.id}> was eaten ${Victim.eatenCounter} time(s)`);
+                }
+                else {
+                    const phraseIndex = Math.floor(Math.random() * constants_1.damagePhrases.length);
+                    const phrase = constants_1.damagePhrases[phraseIndex];
+                    Attacker.lastTimeEat = Date.now();
+                    Attacker.save();
+                    Victim.save();
+                    message.channel.send(`<@${author.id}> bit <@${targetedUser.id}> and dealt ${damage}. <@${targetedUser.id}> got only ${Victim.health}hp left. ${phrase}`);
+                }
+            }
+        }
     }
 });
 client.login(process.env.DISCORD_TOKEN);
